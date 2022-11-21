@@ -1,5 +1,7 @@
 package com.example.monkeyapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +11,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
@@ -19,13 +22,16 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.example.monkeyapp.ui.theme.CyanTextButton
 import com.example.monkeyapp.ui.theme.MonkeyAppTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,14 +130,21 @@ fun FirstScreen() {
             style = MaterialTheme.typography.body1
         )
 
+        val context = LocalContext.current
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+
+                sendEmail(context)
+            },
             shape = RoundedCornerShape(24.dp),
             modifier = Modifier
                 .wrapContentWidth()
                 .wrapContentHeight()
                 .padding(top = 24.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.White,
+                contentColor = Color.Cyan
+            )
         ) {
             Text(
                 text = "Get in Touch!",
@@ -166,7 +179,8 @@ fun FirstScreen() {
                     modifier = Modifier
                         .width(24.dp)
                         .height(24.dp)
-                        .align(Alignment.Center),
+                        .align(Alignment.Center)
+                        .clickable { }
                 )
             }
         }
@@ -343,14 +357,21 @@ fun ThirdScreen() {
                     .padding(top = 16.dp)
             )
 
+            val context = LocalContext.current
+
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    sendEmail(context = context)
+                },
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier
                     .wrapContentWidth()
                     .wrapContentHeight()
                     .padding(top = 24.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.White,
+                    contentColor = Color.Cyan
+                )
             ) {
                 Text(
                     text = "Get in Touch!",
@@ -413,6 +434,20 @@ fun ThirdScreen() {
     }
 
 
+}
+
+fun sendEmail(context: Context) {
+    val intent = Intent(Intent.ACTION_SENDTO)
+    intent.type = "text/plain"
+    intent.putExtra(Intent.EXTRA_EMAIL,
+         arrayOf("danielibarra0129@gmail.com"));
+    intent.putExtra(Intent.EXTRA_SUBJECT, "I want a quote")
+    intent.putExtra(Intent.EXTRA_TEXT, "I need you to build an application")
+
+    startActivity(
+        context,
+        intent,
+    null)
 }
 
 @Preview(showBackground = true)
