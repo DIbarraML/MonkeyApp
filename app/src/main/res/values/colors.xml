@@ -10,4 +10,7 @@
     <color name="cyan_button">#29ABE1</color>
     <color name="background_first_screen">#FFB3DDD8</color>
     <color name="background_second_screen">#FFAAAACC</color>
+    <color name="background_third_screen">#FF29ABE1</color>
+    <color name="background_card">#FFE6E3EF</color>
+    <color name="text_unselected">#47130F26</color>
 </resources>
