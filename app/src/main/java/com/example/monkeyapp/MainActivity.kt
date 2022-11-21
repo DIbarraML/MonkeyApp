@@ -317,25 +317,23 @@ fun ThirdScreen() {
 
     Box(
         modifier = Modifier
-            .wrapContentWidth()
+            .fillMaxWidth()
             .padding(top = 48.dp)
     ) {
         Image(
-            modifier = Modifier
-                .wrapContentWidth()
-                .height(336.dp)
-                .padding(end = 136.dp)
-                .align(Alignment.TopStart),
-            contentDescription = "foonkie monkey",
-
             painter = painterResource(id = R.drawable.foonkie_monkey_call),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(336.dp)
+                .padding(end = 136.dp),
+            contentDescription = "foonkie monkey",
             contentScale = ContentScale.Crop,
         )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 80.dp, end = 32.dp),
+                .padding(top = 120.dp, end = 32.dp),
             horizontalAlignment = Alignment.End
         ) {
             Text(
