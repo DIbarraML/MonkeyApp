@@ -11,7 +11,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
@@ -25,10 +24,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
+import com.example.monkeyapp.components.InfoLocation
+import com.example.monkeyapp.components.MonkeyDivider
+import com.example.monkeyapp.components.MonkeyTitle
+import com.example.monkeyapp.components.ScreenBackgroundColor
 import com.example.monkeyapp.ui.theme.CyanTextButton
 import com.example.monkeyapp.ui.theme.MonkeyAppTheme
 
@@ -48,7 +52,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .verticalScroll(rememberScrollState())
                     ) {
-                        PaintBackground()
+                        ScreenBackgroundColor()
                         Column(modifier = Modifier.fillMaxSize()) {
                             FirstScreen()
                             SecondScreen()
@@ -63,39 +67,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PaintBackground() {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(704.dp)
-                .background(colorResource(id = R.color.background_first_screen))
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1000.dp)
-                .background(colorResource(id = R.color.background_second_screen))
-        )
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(576.dp)
-                .background(colorResource(id = R.color.background_third_screen))
-        )
-    }
-
-}
-
-@Composable
 fun FirstScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp),
+            .padding(start = 16.dp, end = 16.dp, top = 56.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
@@ -106,25 +82,20 @@ fun FirstScreen() {
             contentScale = ContentScale.Crop
         )
 
-        Divider(
+        MonkeyDivider(
             color = Color.Black,
-            thickness = 1.dp,
-            modifier = Modifier
-                .width(80.dp)
-                .padding(top = 40.dp)
+            alignment = Alignment.CenterHorizontally,
+            top = 40.dp
+        )
+
+        MonkeyTitle(
+            textId = R.string.title_first_screen,
+            textAlign = TextAlign.Center,
+            color = Color.Black
         )
 
         Text(
-            text = "Expert Samurais\n" +
-                    "on Develop Secure apps\n" +
-                    "with Sensitive data. ",
-            style = MaterialTheme.typography.h1,
-            modifier = Modifier
-                .padding(top = 16.dp)
-        )
-
-        Text(
-            text = "We are samurais code monkeys that masters the most recent data security protocols, encrypted methodologies and Blockchain development.",
+            text = stringResource(id = R.string.we_are_samurais),
             modifier = Modifier
                 .padding(top = 24.dp, start = 40.dp, end = 40.dp),
             style = MaterialTheme.typography.body1
@@ -147,7 +118,7 @@ fun FirstScreen() {
             )
         ) {
             Text(
-                text = "Get in Touch!",
+                text = stringResource(id = R.string.get_in_touch),
                 style = MaterialTheme.typography.button
             )
         }
@@ -198,7 +169,7 @@ fun SecondScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Case studies",
+            text = stringResource(id = R.string.case_studies),
             style = MaterialTheme.typography.h4,
             color = Color.White,
             modifier = Modifier
@@ -206,13 +177,9 @@ fun SecondScreen() {
                 .padding(start = 40.dp)
         )
 
-        Divider(
-            color = Color.White,
-            thickness = 1.dp,
-            modifier = Modifier
-                .width(80.dp)
-                .padding(top = 8.dp, start = 40.dp)
-                .align(Alignment.Start)
+        MonkeyDivider(
+            top = 8.dp,
+            start = 40.dp,
         )
 
         Card(
@@ -236,26 +203,20 @@ fun SecondScreen() {
                     modifier = Modifier
                         .padding(start = 28.dp, end = 28.dp, top = 16.dp)
                 ) {
-                    Text(
-                        text = "Digital Platform for Pfizer",
-                        style = MaterialTheme.typography.h1,
-                        modifier = Modifier
-                            .padding(top = 16.dp),
-                        color = Color.Black,
-                        textAlign = TextAlign.Start
+
+                    MonkeyTitle(
+                        textId = R.string.digital_platform,
+                        textAlign = TextAlign.Start,
+                        color = Color.Black
                     )
 
-                    Divider(
+                    MonkeyDivider(
                         color = Color.Black,
-                        thickness = 1.dp,
-                        modifier = Modifier
-                            .width(80.dp)
-                            .padding(top = 16.dp)
-                            .align(Alignment.Start)
+                        top = 16.dp
                     )
 
                     Text(
-                        text = "We are samurais code monkeys that masters the most recent data security protocols, encrypted methodologies and Blockchain development.",
+                        text = stringResource(id = R.string.give_the_hability),
                         style = MaterialTheme.typography.body2,
                         modifier = Modifier.padding(top = 16.dp)
                     )
@@ -270,7 +231,7 @@ fun SecondScreen() {
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
                     ) {
                         Text(
-                            text = "View Project",
+                            text = stringResource(id = R.string.view_project),
                             style = MaterialTheme.typography.button
                         )
                     }
@@ -284,7 +245,7 @@ fun SecondScreen() {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Text(
-                text = "Pfizer",
+                text = stringResource(id = R.string.pfizer),
                 style = MaterialTheme.typography.h3,
                 modifier = Modifier
                     .clickable { }
@@ -306,17 +267,17 @@ fun SecondScreen() {
                     .padding(top = 8.dp)
             )
             Text(
-                text = "Takeda",
+                text = stringResource(id = R.string.takeda),
                 style = MaterialTheme.typography.h5,
                 modifier = Modifier.padding(top = 8.dp)
             )
             Text(
-                text = "Boston Scientific\nGroup",
+                text = stringResource(id = R.string.boston),
                 style = MaterialTheme.typography.h5,
                 modifier = Modifier.padding(top = 8.dp)
             )
             Text(
-                text = "BSJI",
+                text = stringResource(id = R.string.bsji),
                 style = MaterialTheme.typography.h5,
                 modifier = Modifier.padding(top = 8.dp)
             )
@@ -350,11 +311,10 @@ fun ThirdScreen() {
                 .padding(top = 120.dp, end = 32.dp),
             horizontalAlignment = Alignment.End
         ) {
-            Text(
-                text = "Let’s work\ntogether!",
-                style = MaterialTheme.typography.h1,
-                modifier = Modifier
-                    .padding(top = 16.dp)
+
+            MonkeyTitle(
+                textId = R.string.lets_work,
+                textAlign = TextAlign.End
             )
 
             val context = LocalContext.current
@@ -374,18 +334,14 @@ fun ThirdScreen() {
                 )
             ) {
                 Text(
-                    text = "Get in Touch!",
+                    text = stringResource(id = R.string.get_in_touch),
                     style = MaterialTheme.typography.button
                 )
             }
 
-            Divider(
-                color = Color.White,
-                thickness = 1.dp,
-                modifier = Modifier
-                    .width(80.dp)
-                    .padding(top = 56.dp, start = 40.dp)
-                    .align(Alignment.End)
+            MonkeyDivider(
+                top = 56.dp,
+                alignment = Alignment.End
             )
 
             Image(
@@ -395,36 +351,15 @@ fun ThirdScreen() {
                 contentScale = ContentScale.Crop
             )
 
-            Text(
-                text = "Bogotá:",
-                style = MaterialTheme.typography.subtitle1,
-                modifier = Modifier.padding(top = 24.dp)
-            )
-            Text(text = "Calle 106 # 54-15 of. 307/308", style = MaterialTheme.typography.subtitle2)
-            Text(
-                text = "Harpenden, UK",
-                style = MaterialTheme.typography.subtitle1,
-                modifier = Modifier.padding(top = 16.dp)
-            )
-            Text(text = "Harpenden Hall, Southdown Rd", style = MaterialTheme.typography.subtitle2)
-            Text(
-                text = "Miami, USA:",
-                style = MaterialTheme.typography.subtitle1,
-                modifier = Modifier.padding(top = 16.dp)
-            )
-            Text(text = "990 Biscayne Blvd #501", style = MaterialTheme.typography.subtitle2)
+            InfoLocation()
 
-            Divider(
-                color = Color.White,
-                thickness = 1.dp,
-                modifier = Modifier
-                    .width(80.dp)
-                    .padding(top = 24.dp)
-                    .align(Alignment.End)
+            MonkeyDivider(
+                top = 24.dp,
+                alignment = Alignment.End
             )
 
             Text(
-                text = "Foonkie Monkey 2021",
+                text = stringResource(id = R.string.foonkie_monkey_2021),
                 style = MaterialTheme.typography.subtitle2,
                 modifier = Modifier.padding(top = 24.dp)
             )
@@ -440,7 +375,7 @@ fun sendEmail(context: Context) {
     val intent = Intent(Intent.ACTION_SENDTO)
     intent.type = "text/plain"
     intent.putExtra(Intent.EXTRA_EMAIL,
-         arrayOf("danielibarra0129@gmail.com"));
+         arrayOf("danielibarra0129@gmail.com"))
     intent.putExtra(Intent.EXTRA_SUBJECT, "I want a quote")
     intent.putExtra(Intent.EXTRA_TEXT, "I need you to build an application")
 

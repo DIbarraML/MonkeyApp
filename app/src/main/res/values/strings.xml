@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">MonkeyApp</string>
+    <string name="title_first_screen">Expert Samurais\n
+        on Develop Secure apps\n
+        with Sensitive data. </string>
+    <string name="digital_platform">Digital Platform for Pfizer</string>
+    <string name="lets_work">Let’s work\ntogether!</string>
+    <string name="we_are_samurais">We are samurais code monkeys that masters the most recent
+        data security protocols, encrypted methodologies and Blockchain development.</string>
+    <string name="give_the_hability">Give the Hability to the content administrator to create,
+        edit, and delete the desired commercial content in a technological solution, and allow
+        the users to download and work online or offline with the content, were the two main
+        challenges we had.</string>
+    <string name="view_project">View Project</string>
+    <string name="pfizer">Pfizer</string>
+    <string name="takeda">Takeda</string>
+    <string name="bsji">BSJI</string>
+    <string name="boston">Boston Scientific\nGroup</string>
+    <string name="get_in_touch">Get in Touch!</string>
+    <string name="foonkie_monkey_2021">Foonkie Monkey 2021</string>
+    <string name="case_studies">Case studies</string>
+
 </resources>

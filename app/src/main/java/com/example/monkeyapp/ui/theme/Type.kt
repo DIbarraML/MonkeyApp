@@ -27,7 +27,8 @@ val Typography = Typography(
         fontFamily = fontFamilyRubik,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
+        color = Color.Black
     ),
     body2 = TextStyle(
         fontFamily = fontFamilyRubik,
