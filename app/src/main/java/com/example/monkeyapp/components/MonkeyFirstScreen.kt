@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,17 +13,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.monkeyapp.sendEmail
 import com.example.monkeyapp.ui.theme.CyanTextButton
 import com.example.monkeyapp.R
 
 @Composable
-fun FirstScreen() {
+fun MonkeyFirstScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp),
+            .padding(start = 16.dp, end = 16.dp, top = 56.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
@@ -35,50 +36,28 @@ fun FirstScreen() {
             contentScale = ContentScale.Crop
         )
 
-        Divider(
+        MonkeyDivider(
             color = Color.Black,
-            thickness = 1.dp,
-            modifier = Modifier
-                .width(80.dp)
-                .padding(top = 40.dp)
+            alignment = Alignment.CenterHorizontally,
+            top = 40.dp
+        )
+
+        MonkeyTitle(
+            textId = R.string.title_first_screen,
+            textAlign = TextAlign.Center,
+            color = Color.Black
         )
 
         Text(
-            text = "Expert Samurais\n" +
-                    "on Develop Secure apps\n" +
-                    "with Sensitive data. ",
-            style = MaterialTheme.typography.h1,
-            modifier = Modifier
-                .padding(top = 16.dp)
-        )
-
-        Text(
-            text = "We are samurais code monkeys that masters the most recent data security protocols, encrypted methodologies and Blockchain development.",
+            text = stringResource(id = R.string.we_are_samurais),
             modifier = Modifier
                 .padding(top = 24.dp, start = 40.dp, end = 40.dp),
             style = MaterialTheme.typography.body1
         )
 
         val context = LocalContext.current
-        Button(
-            onClick = {
-
-                sendEmail(context)
-            },
-            shape = RoundedCornerShape(24.dp),
-            modifier = Modifier
-                .wrapContentWidth()
-                .wrapContentHeight()
-                .padding(top = 24.dp),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.White,
-                contentColor = Color.Cyan
-            )
-        ) {
-            Text(
-                text = "Get in Touch!",
-                style = MaterialTheme.typography.button
-            )
+        MonkeyButton(R.string.get_in_touch) {
+            sendEmail(context)
         }
 
         Box(
