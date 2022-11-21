@@ -1,7 +1,5 @@
 package com.example.monkeyapp
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +13,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.content.ContextCompat.startActivity
 import com.example.monkeyapp.components.MonkeyFirstScreen
 import com.example.monkeyapp.components.MonkeySecondScreen
 import com.example.monkeyapp.components.MonkeyThirdScreen
@@ -50,23 +47,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-fun sendEmail(context: Context) {
-    val intent = Intent(Intent.ACTION_SENDTO)
-    intent.type = "text/plain"
-    intent.putExtra(
-        Intent.EXTRA_EMAIL,
-        arrayOf("danielibarra0129@gmail.com")
-    )
-    intent.putExtra(Intent.EXTRA_SUBJECT, "I want a quote")
-    intent.putExtra(Intent.EXTRA_TEXT, "I need you to build an application")
-
-    startActivity(
-        context,
-        intent,
-        null
-    )
 }
 
 @Preview(showBackground = true)
