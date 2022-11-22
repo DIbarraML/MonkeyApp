@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MonkeyApp</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="show_list">Show List Users</string>
     <string name="title_first_screen">Expert Samurais\n
         on Develop Secure apps\n
         with Sensitive data. </string>
