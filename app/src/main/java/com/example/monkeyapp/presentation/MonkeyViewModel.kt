@@ -12,17 +12,16 @@ class MonkeyViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() 
 
     val userListAct = mutableStateListOf<User>()
 
-
     fun getUsers(page: Int) {
         viewModelScope.launch {
             when (val output = getUserUseCase.invoke(page)) {
                 is Output.Success -> {
+                    println("LISTAS -> ${output.value.data}")
                     userListAct.addAll(output.value.data)
                 }
                 is Output.Failure -> {
                 }
             }
         }
-
     }
 }

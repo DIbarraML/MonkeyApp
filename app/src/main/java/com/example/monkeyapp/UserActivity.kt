@@ -1,10 +1,12 @@
 package com.example.monkeyapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,16 +14,18 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.example.monkeyapp.data.model.DataResponse
 import com.example.monkeyapp.data.model.User
 import com.example.monkeyapp.presentation.MonkeyViewModel
 import com.example.monkeyapp.presentation.MonkeyViewModelFactory
@@ -69,16 +73,26 @@ class UserActivity : ComponentActivity() {
 @Composable
 fun ItemList(user: User) {
     Column(modifier = Modifier.fillMaxWidth()) {
+        val context = LocalContext.current
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .border(width = 1.dp, Color.Black),
-            horizontalArrangement = Arrangement.SpaceEvenly
+                .border(width = 1.dp, Color.Black)
+                .clickable {
+                    val intent = Intent(context, UserDetailActivity::class.java)
+                    intent.putExtra("user", user)
+                    startActivity(context, intent, null)
+                },
+            horizontalArrangement = Arrangement.SpaceEvenly,
 
-        ) {
+            ) {
+            val name = remember {
+                mutableStateOf(user.firstName)
+            }
+
             Text(
-                text = user.firstName + user.lastName, style = MaterialTheme.typography.h3,
+                text = name.value + " " + user.lastName, style = MaterialTheme.typography.h3,
                 modifier = Modifier
                     .weight(0.8f)
                     .padding(start = 8.dp, end = 8.dp)
@@ -92,9 +106,13 @@ fun ItemList(user: User) {
                     .align(CenterVertically)
             )
 
+            val photo = remember {
+                mutableStateOf(user.avatar)
+            }
+
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(user.avatar)
+                    .data(photo.value)
                     .transformations(CircleCropTransformation())
                     .build(),
                 contentDescription = "",
@@ -147,6 +165,5 @@ fun ItemListHead() {
 @Composable
 fun DefaultPreview2() {
     MonkeyAppTheme {
-        //Greeting("Android")
     }
 }

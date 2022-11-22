@@ -9,4 +9,4 @@ data class User(
     @SerializedName("last_name")
     val lastName: String,
     val avatar: String
-)
+): java.io.Serializable

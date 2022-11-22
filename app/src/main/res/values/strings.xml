@@ -21,5 +21,6 @@
     <string name="get_in_touch">Get in Touch!</string>
     <string name="foonkie_monkey_2021">Foonkie Monkey 2021</string>
     <string name="case_studies">Case studies</string>
+    <string name="title_activity_user_detail">UserDetailActivity</string>
 
 </resources>
